@@ -3,46 +3,40 @@ let i = 0;
 const hours = [6,7,8,9,10,11,12,1,2,3,4,5,6,7];
 let locations = [];
 let totalArr = [[],[],[],[],[]];
-function locationData(location) {
+function randomNum() {
+    return Math.floor(Math.random() * (this.max - this.min + 1) + this.min);
+}
+
+function locationData() {
     const seattle = {
         min: 23,
         max: 65,
         avgCookie: 6.3,
-        seattleNumCustomers: function (){
-            return Math.floor(Math.random() * (this.max - this.min + 1) + this.min);
-        }
+        seattleNumCustomers: randomNum
     };
     const tokyo = {
         min: 3,
         max: 24,
         avgCookie: 1.2,
-        tokyoNumCustomers: function (){
-            return Math.floor(Math.random() * (this.max - this.min + 1) + this.min);
-        }
+        tokyoNumCustomers: randomNum
     };
     const dubai = {
         min: 11,
         max: 38,
         avgCookie: 3.7,
-        dubaiNumCustomers: function (){
-            return Math.floor(Math.random() * (this.max - this.min + 1) + this.min);
-        }
+        dubaiNumCustomers: randomNum
     };
     const paris = {
         min: 20,
         max: 38,
         avgCookie: 2.3,
-        parisNumCustomers: function (){
-            return Math.floor(Math.random() * (this.max - this.min + 1) + this.min);
-        }
+        parisNumCustomers: randomNum
     };
     const lima = {
         min: 2,
         max: 16,
         avgCookie: 4.6,
-        limaNumCustomers: function (){
-            return Math.floor(Math.random() * (this.max - this.min + 1) + this.min);
-        }
+        limaNumCustomers: randomNum
     };
     locations.push(seattle, tokyo, dubai, paris, lima);
     return locations;
@@ -66,103 +60,58 @@ function hourlyList() {
     let morning = 'am: '
     let afternoon = 'pm: '
 
-    while (i < hours.length) {
-        i++;
-        totalArr[0].push(calcHourlyCookies()[0])
-        totalArr[1].push(calcHourlyCookies()[1])
-        totalArr[2].push(calcHourlyCookies()[2])
-        totalArr[3].push(calcHourlyCookies()[3])
-        totalArr[4].push(calcHourlyCookies()[4])
-    }
-
-    const sum1 = totalArr[0].reduce((accumulator, value) => {
-        return accumulator + value;
-    }, 0);
-    const sum2 = totalArr[1].reduce((accumulator, value) => {
-        return accumulator + value;
-    }, 0);
-    const sum3 = totalArr[2].reduce((accumulator, value) => {
-        return accumulator + value;
-    }, 0);
-    const sum4 = totalArr[3].reduce((accumulator, value) => {
-        return accumulator + value;
-    }, 0);
-    const sum5 = totalArr[4].reduce((accumulator, value) => {
-        return accumulator + value;
-    }, 0);
-
-    for (let i = 0; i < hours.length + 1; i++) {
-        let list1 = document.createElement('li');
-        let j = hours[i];
-        if (i < 6) {
-            document.getElementById('seattle-list').appendChild(list1); 
-            list1.appendChild(document.createTextNode(j + morning + totalArr[0][i] + ' cookies sold.'));
-        } else if (i >= 6 && i != 14) {
-            document.getElementById('seattle-list').appendChild(list1); 
-            list1.appendChild(document.createTextNode(j + afternoon + totalArr[0][i] + ' cookies sold.'));
-        } else if (i = 14) {
-            document.getElementById('seattle-list').appendChild(list1); 
-            list1.appendChild(document.createTextNode(sum1 + ' total cookies sold.')); 
+    for (let i = 0; i < hours.length; i++) {
+        for (let i = 0; i < 5; i++) {
+            totalArr[i].push(calcHourlyCookies()[i])
         }
+    }
+    let sum = [];
+    for (let i = 0; i < 5; i++) {
+        sum[i] = totalArr[i].reduce((val1, val2) => {
+            return val1 + val2;
+        }, 0);
     }
     
     for (let i = 0; i < hours.length + 1; i++) {
+        let list0 = document.createElement('li');
+        let list1 = document.createElement('li');
         let list2 = document.createElement('li');
-        let j = hours[i];
-        if (i < 6) {
-            document.getElementById('tokyo-list').appendChild(list2); 
-            list2.appendChild(document.createTextNode(j + morning + totalArr[1][i] + ' cookies sold.'));
-        } else if (i >= 6 && i != 14) {
-            document.getElementById('tokyo-list').appendChild(list2); 
-            list2.appendChild(document.createTextNode(j + afternoon + totalArr[1][i] + ' cookies sold.'));
-        } else if (i = 14) {
-            document.getElementById('tokyo-list').appendChild(list2); 
-            list2.appendChild(document.createTextNode(sum2 + ' total cookies sold.'));
-        }
-    }
-
-    for (let i = 0; i < hours.length + 1; i++) {
         let list3 = document.createElement('li');
-        let j = hours[i];
-        if (i < 6) {
-            document.getElementById('dubai-list').appendChild(list3); 
-            list3.appendChild(document.createTextNode(j + morning + totalArr[2][i] + ' cookies sold.'));
-        } else if (i >= 6 && i != 14) {
-            document.getElementById('dubai-list').appendChild(list3); 
-            list3.appendChild(document.createTextNode(j + afternoon + totalArr[2][i] + ' cookies sold.'));
-        } else if (i = 14) {
-            document.getElementById('dubai-list').appendChild(list3); 
-            list3.appendChild(document.createTextNode(sum3 + ' total cookies sold.'));
-        }
-    }
-  
-    for (let i = 0; i < hours.length + 1; i++) {
         let list4 = document.createElement('li');
         let j = hours[i];
         if (i < 6) {
-            document.getElementById('paris-list').appendChild(list4); 
-            list4.appendChild(document.createTextNode(j + morning + totalArr[3][i] + ' cookies sold.'));
+            document.getElementById('seattle-list', 'tokyo-list').appendChild(list0); 
+            list0.appendChild(document.createTextNode(j + morning + totalArr[0][i] + ' cookies sold.'));
+            document.getElementById('tokyo-list').appendChild(list1); 
+            list1.appendChild(document.createTextNode(j + morning + totalArr[1][i] + ' cookies sold.'));
+            document.getElementById('dubai-list').appendChild(list2); 
+            list2.appendChild(document.createTextNode(j + morning + totalArr[2][i] + ' cookies sold.'));
+            document.getElementById('paris-list').appendChild(list3); 
+            list3.appendChild(document.createTextNode(j + morning + totalArr[3][i] + ' cookies sold.'));
+            document.getElementById('lima-list').appendChild(list4); 
+            list4.appendChild(document.createTextNode(j + morning + totalArr[4][i] + ' cookies sold.'));
         } else if (i >= 6 && i != 14) {
-            document.getElementById('paris-list').appendChild(list4); 
-            list4.appendChild(document.createTextNode(j + afternoon + totalArr[3][i] + ' cookies sold.'));
+            document.getElementById('seattle-list').appendChild(list0); 
+            list0.appendChild(document.createTextNode(j + afternoon + totalArr[0][i] + ' cookies sold.'));
+            document.getElementById('tokyo-list').appendChild(list1); 
+            list1.appendChild(document.createTextNode(j + afternoon + totalArr[1][i] + ' cookies sold.'));
+            document.getElementById('dubai-list').appendChild(list2); 
+            list2.appendChild(document.createTextNode(j + afternoon + totalArr[2][i] + ' cookies sold.'));
+            document.getElementById('paris-list').appendChild(list3); 
+            list3.appendChild(document.createTextNode(j + afternoon + totalArr[3][i] + ' cookies sold.'));
+            document.getElementById('lima-list').appendChild(list4); 
+            list4.appendChild(document.createTextNode(j + afternoon + totalArr[4][i] + ' cookies sold.'));
         } else if (i = 14) {
-            document.getElementById('paris-list').appendChild(list4); 
-            list4.appendChild(document.createTextNode(sum4 + ' total cookies sold.'));
-        }
-    }
-   
-    for (let i = 0; i < hours.length + 1; i++) {
-        let list5 = document.createElement('li');
-        let j = hours[i];
-        if (i < 6) {
-            document.getElementById('lima-list').appendChild(list5); 
-            list5.appendChild(document.createTextNode(j + morning + totalArr[4][i] + ' cookies sold.'));
-        } else if (i >= 6 && i != 14) {
-            document.getElementById('lima-list').appendChild(list5); 
-            list5.appendChild(document.createTextNode(j + afternoon + totalArr[4][i] + ' cookies sold.'));
-        } else if (i = 14) {
-            document.getElementById('lima-list').appendChild(list5); 
-            list5.appendChild(document.createTextNode(sum5 + ' total cookies sold.')); 
+            document.getElementById('seattle-list').appendChild(list0); 
+            list0.appendChild(document.createTextNode(sum[0] + ' total cookies sold.'));
+            document.getElementById('tokyo-list').appendChild(list1);
+            list1.appendChild(document.createTextNode(sum[1] + ' total cookies sold.'));
+            document.getElementById('dubai-list').appendChild(list2);  
+            list2.appendChild(document.createTextNode(sum[2] + ' total cookies sold.'));
+            document.getElementById('paris-list').appendChild(list3); 
+            list3.appendChild(document.createTextNode(sum[3] + ' total cookies sold.'));
+            document.getElementById('lima-list').appendChild(list4);  
+            list4.appendChild(document.createTextNode(sum[4] + ' total cookies sold.')); 
         }
     }
 }
