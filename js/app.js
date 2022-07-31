@@ -1,118 +1,100 @@
 "use strict";
+// Base definitons of each variable
 let i = 0;
-const hours = [6,7,8,9,10,11,12,1,2,3,4,5,6,7];
-let locations = [];
+let hours = [6,7,8,9,10,11,12,1,2,3,4,5,6,7];
+const locations = ['seattle', 'tokyo', 'dubai', 'paris', 'lima'];
+const minMax = [[23, 3, 11, 20, 2],[65, 24, 38, 38, 16]]
+const avgCookieSold = [6.3, 1.2, 3.7, 2.3, 4.6]
+let locationDataArr = [];
 let totalArr = [[],[],[],[],[]];
+// Returns a random number of customers in each object defined below by numCustomers
 function randomNum() {
     return Math.floor(Math.random() * (this.max - this.min + 1) + this.min);
 }
-
-function locationData() {
-    const seattle = {
-        min: 23,
-        max: 65,
-        avgCookie: 6.3,
-        seattleNumCustomers: randomNum
-    };
-    const tokyo = {
-        min: 3,
-        max: 24,
-        avgCookie: 1.2,
-        tokyoNumCustomers: randomNum
-    };
-    const dubai = {
-        min: 11,
-        max: 38,
-        avgCookie: 3.7,
-        dubaiNumCustomers: randomNum
-    };
-    const paris = {
-        min: 20,
-        max: 38,
-        avgCookie: 2.3,
-        parisNumCustomers: randomNum
-    };
-    const lima = {
-        min: 2,
-        max: 16,
-        avgCookie: 4.6,
-        limaNumCustomers: randomNum
-    };
-    locations.push(seattle, tokyo, dubai, paris, lima);
-    return locations;
-    
+// Outlines objects to be created
+function createLocation(name, min, max, avgCookie) {
+    let obj = {};
+    obj.name = name;
+    obj.min = min;
+    obj.max = max;
+    obj.avgCookie = avgCookie;
+    obj.numCustomers = randomNum;
+    return obj;
 }
-locationData();
-
-function calcHourlyCookies() { 
-    let avgHourlyCookies = [Math.round(locations[0].avgCookie * locations[0].seattleNumCustomers()), 
-    Math.round(locations[1].avgCookie * locations[1].tokyoNumCustomers()),
-    Math.round(locations[2].avgCookie * locations[2].dubaiNumCustomers()),
-    Math.round(locations[3].avgCookie * locations[3].parisNumCustomers()),
-    Math.round(locations[4].avgCookie * locations[4].limaNumCustomers())
-    ]     
-return avgHourlyCookies;
+// Creates new array index for each new object
+for (i = 0; i < locations.length; i++) {
+    const name = locations[i];
+    let min = minMax[0][i];
+    let max = minMax[1][i];
+    let avgCookie = avgCookieSold[i];
+    locationDataArr.push(createLocation(name, min, max, avgCookie));
 }
-
-
-function hourlyList() {
-    // code in here to add hourly cookie sales list to div for each city
-    let morning = 'am: '
-    let afternoon = 'pm: '
-
-    for (let i = 0; i < hours.length; i++) {
-        for (let i = 0; i < 5; i++) {
-            totalArr[i].push(calcHourlyCookies()[i])
-        }
+// Calculates number of cookies sold per hour
+function calcHourlyCookies() {
+    let avgHourlyCookies = []
+    for (i = 0; i < 5; i++) {
+        avgHourlyCookies.push(Math.round(locationDataArr[i].avgCookie * locationDataArr[i].numCustomers()))
     }
-    let sum = [];
-    for (let i = 0; i < 5; i++) {
-        sum[i] = totalArr[i].reduce((val1, val2) => {
-            return val1 + val2;
-        }, 0);
-    }
-    
+    return avgHourlyCookies;
+}
+function createTable() {
+    // Creates hours on table
+    let sum = []
     for (let i = 0; i < hours.length + 1; i++) {
-        let list0 = document.createElement('li');
-        let list1 = document.createElement('li');
-        let list2 = document.createElement('li');
-        let list3 = document.createElement('li');
-        let list4 = document.createElement('li');
+        let tableHours = document.createElement('th');
+        tableHours.classList.add('hour');
         let j = hours[i];
         if (i < 6) {
-            document.getElementById('seattle-list', 'tokyo-list').appendChild(list0); 
-            list0.appendChild(document.createTextNode(j + morning + totalArr[0][i] + ' cookies sold.'));
-            document.getElementById('tokyo-list').appendChild(list1); 
-            list1.appendChild(document.createTextNode(j + morning + totalArr[1][i] + ' cookies sold.'));
-            document.getElementById('dubai-list').appendChild(list2); 
-            list2.appendChild(document.createTextNode(j + morning + totalArr[2][i] + ' cookies sold.'));
-            document.getElementById('paris-list').appendChild(list3); 
-            list3.appendChild(document.createTextNode(j + morning + totalArr[3][i] + ' cookies sold.'));
-            document.getElementById('lima-list').appendChild(list4); 
-            list4.appendChild(document.createTextNode(j + morning + totalArr[4][i] + ' cookies sold.'));
+            document.getElementById('time').appendChild(tableHours);
+            tableHours.appendChild(document.createTextNode(j + ':00am'));
         } else if (i >= 6 && i != 14) {
-            document.getElementById('seattle-list').appendChild(list0); 
-            list0.appendChild(document.createTextNode(j + afternoon + totalArr[0][i] + ' cookies sold.'));
-            document.getElementById('tokyo-list').appendChild(list1); 
-            list1.appendChild(document.createTextNode(j + afternoon + totalArr[1][i] + ' cookies sold.'));
-            document.getElementById('dubai-list').appendChild(list2); 
-            list2.appendChild(document.createTextNode(j + afternoon + totalArr[2][i] + ' cookies sold.'));
-            document.getElementById('paris-list').appendChild(list3); 
-            list3.appendChild(document.createTextNode(j + afternoon + totalArr[3][i] + ' cookies sold.'));
-            document.getElementById('lima-list').appendChild(list4); 
-            list4.appendChild(document.createTextNode(j + afternoon + totalArr[4][i] + ' cookies sold.'));
+            document.getElementById('time').appendChild(tableHours);
+            tableHours.appendChild(document.createTextNode(j + ':00pm')); 
         } else if (i = 14) {
-            document.getElementById('seattle-list').appendChild(list0); 
-            list0.appendChild(document.createTextNode(sum[0] + ' total cookies sold.'));
-            document.getElementById('tokyo-list').appendChild(list1);
-            list1.appendChild(document.createTextNode(sum[1] + ' total cookies sold.'));
-            document.getElementById('dubai-list').appendChild(list2);  
-            list2.appendChild(document.createTextNode(sum[2] + ' total cookies sold.'));
-            document.getElementById('paris-list').appendChild(list3); 
-            list3.appendChild(document.createTextNode(sum[3] + ' total cookies sold.'));
-            document.getElementById('lima-list').appendChild(list4);  
-            list4.appendChild(document.createTextNode(sum[4] + ' total cookies sold.')); 
+            document.getElementById('time').appendChild(tableHours);
+            tableHours.appendChild(document.createTextNode('Daily location Total')); 
         }
     }
+    // Creates table entries for each city, cookies sold in an hour, and total cookies sold in the day
+    for (let i = 0; i < locationDataArr.length; i++) {
+        let tableCity = document.createElement('td');
+        tableCity.classList.add('city');
+        document.getElementById(locations[i]).appendChild(tableCity);
+        tableCity.appendChild(document.createTextNode(locationDataArr[i].name.toUpperCase()));  
+    }
+    for (let i = 0; i < hours.length; i++) {
+        for (let j = 0; j < 5; j++) {
+            // Pushes the cookies per hour into an array to get the sum
+            totalArr[j].push(calcHourlyCookies()[j])
+            // Creates table data for each locations cookies sold per hour  
+            let tableCookies = document.createElement('td');
+            tableCookies.classList.add('cookiesPerHour');
+            document.getElementById(locations[j]).appendChild(tableCookies);
+            tableCookies.appendChild(document.createTextNode(totalArr[j][i]));     
+            // Creates total at the end of each hour and daily location total     
+        }   
+    }
+    let arrNum = [[],[],[],[],[],[],[],[],[],[],[],[],[],[]];
+    for (let i = 0; i < hours.length; i++) {
+        for (let j = 0; j < 5; j++) {
+            arrNum[i].push(totalArr[j][i]);
+            sum[i] = arrNum[i].reduce((val1, val2) => {
+                return val1 + val2;
+            }, 0); 
+        }
+        let totalCookies = document.createElement('td');
+        totalCookies.classList.add('cookiesPerHour');
+        document.getElementById('totals').appendChild(totalCookies);
+        totalCookies.appendChild(document.createTextNode(sum[i]));
+    }
+    for (let j = 0; j < 5; j++) {
+        let totalCookies = document.createElement('td');
+        totalCookies.classList.add('cookiesPerHour');
+        sum[j] = totalArr[j].reduce((val1, val2) => {
+            return val1 + val2;
+        }, 0);
+        document.getElementById(locations[j]).appendChild(totalCookies);
+        totalCookies.appendChild(document.createTextNode(sum[j] + ' total cookies.'));
+    }   
 }
-hourlyList();
+createTable();
