@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 // Base definitons of each variable
 let i = 0;
 let hours = [6,7,8,9,10,11,12,1,2,3,4,5,6,7];
@@ -39,7 +39,9 @@ function calcHourlyCookies() {
 }
 function createTable() {
     // Creates hours on table
-    let sum = []
+    let sum1 = [];
+    let sum2 = [];
+    let n = 0;
     for (let i = 0; i < hours.length + 1; i++) {
         let tableHours = document.createElement('th');
         tableHours.classList.add('hour');
@@ -78,23 +80,31 @@ function createTable() {
     for (let i = 0; i < hours.length; i++) {
         for (let j = 0; j < 5; j++) {
             arrNum[i].push(totalArr[j][i]);
-            sum[i] = arrNum[i].reduce((val1, val2) => {
+            sum1[i] = arrNum[i].reduce((val1, val2) => {
                 return val1 + val2;
             }, 0); 
         }
+        
         let totalCookies = document.createElement('td');
         totalCookies.classList.add('cookiesPerHour');
         document.getElementById('totals').appendChild(totalCookies);
-        totalCookies.appendChild(document.createTextNode(sum[i]));
+        totalCookies.appendChild(document.createTextNode(sum1[i]));
+        
     }
+    let dailyTotal = [];
     for (let j = 0; j < 5; j++) {
         let totalCookies = document.createElement('td');
         totalCookies.classList.add('cookiesPerHour');
-        sum[j] = totalArr[j].reduce((val1, val2) => {
+        sum2[j] = totalArr[j].reduce((val1, val2) => {
             return val1 + val2;
         }, 0);
         document.getElementById(locations[j]).appendChild(totalCookies);
-        totalCookies.appendChild(document.createTextNode(sum[j] + ' total cookies.'));
-    }   
+        totalCookies.appendChild(document.createTextNode(sum2[j] + ' total cookies.'));
+        dailyTotal.push(n += sum2[j]);
+    }  
+    let totalCookies = document.createElement('td');
+    totalCookies.classList.add('cookiesPerHour'); 
+    document.getElementById('totals').appendChild(totalCookies);
+    totalCookies.appendChild(document.createTextNode(dailyTotal[4] + ' total cookies.'));
 }
 createTable();
