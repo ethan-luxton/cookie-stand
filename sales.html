@@ -12,35 +12,64 @@
         <body>
             
             <header>
+                <div id="dropdown">
+                    <button class="drop"><i class="fa-solid fa-bars"></i></button>
+                    <div class="menu-content">
+                        <a href="index.html"> Main Page</a>
+                        <a href="store.html"> Store Page</a>
+                        <a href="sales.html"> Sales Page</a>
+                    </div>
+                </div>
+                <h1 id="header">Salmon Cookies Sales</h1>
+
             </header>
             <main>
-                <table>
-                    <tr id="time">
-                        <td id="blank">&nbsp;</td>
-                    </tr>
-                    <tr id="seattle">
-                    </tr>
-                    <tr id="tokyo">
-                        
-                    </tr>
-                    <tr id="dubai">
-                        
-                    </tr>
-                    <tr id="paris">
-                        
-                    </tr>
-                    <tr id="lima">
-                        
-                    </tr>
-                    <tr id="totals">
-                        <td id="li-item">Hourly Totals</td>
-
-                    </tr>
-                    
+                <table id="table">
+                  
                 </table>
+
+                <form id="newLocation">
+                    <div class="form-group">
+                        <label for="name" >Store location name</label>
+                        <input type="text" 
+                            name="newStore" 
+                            id="newStore" 
+                            placeholder="Enter store location" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="number" >Average minimum customers per hour</label>
+                        <input type="number" 
+                            name="min" 
+                            id="min" 
+                            min="1"
+                            max="1000" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="number" >Average maximum customers per hour</label>
+                        <input type="number" 
+                            name="max" 
+                            id="max" 
+                            min="1"
+                            max="1000" required>
+                           
+                    </div>
+                    <div class="form-group">
+                        <label for="number" >Average cookies sold per customer</label>
+                        <input type="number" 
+                            name="avgCookies" 
+                            id="avgCookies"
+                            step=".1"
+                            min="1"
+                            max="12" required>
+                    </div>
+                    <div class="buttons">
+                        <input type="submit" id="submit" name="submit" value="Submit">
+                        
+                    </div>
+                </form>
                 
-                    
-                    <script type="text/javascript" src="js/app.js" ></script>
+                <img src="img/salmon.png" id="salmonpic">
+                <script type="text/javascript" src="js/app.js" ></script>
             </main>
             <footer>
             </footer>
