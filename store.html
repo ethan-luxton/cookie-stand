@@ -6,7 +6,7 @@
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Cookie Stand</title>
             <link type="text/css" href="css/reset.css">
-            <link rel="stylesheet" type="text/css" href="css/styles.css">
+            <link rel="stylesheet" type="text/css" href="css/store.css">
             <script src="https://kit.fontawesome.com/eb6acfa7a8.js" crossorigin="anonymous"></script> <!--Font awesome kit-->
         </head>
         <body>
@@ -16,11 +16,33 @@
                     <div class="menu-content">
                         <a href="index.html"> Main Page</a>
                         <a href="store.html"> Store Page</a>
-                        <a href="sales.html"> Sales Page</a>
+                        <a id ="sale" href="sales.html"> Sales Page</a>
                     </div>
                 </div>
             </header>
             <main>
+                <img id="cutter-img"src="img/cutter.jpeg" alt="cookie-cutter">
+            
+                    <p class="price">$39.99</p>
+                    <p class="desc">A Salmon Cookies Cookie Cutter!</p>
+                    
+           
+                <form class="order" onSubmit="return false;">
+                    <input type="number">
+                    <input type="text" placeholder="Size">
+                    <button type ="submit" class="btn">Out of stock :(</button>
+                </form >
+                <img id="shirt-img" src="img/shirt.jpg" alt="salmon-shirt">
+                
+                    <p class="price">$89.99</p>
+                    <p class="desc">A Salmon Cookies T-Shirt!</p>
+                    
+                
+                <form class="order" onSubmit="return false;">
+                    <input type="number">
+                    <input type="text" placeholder="Size">
+                    <button type ="submit" class="btn">Out of stock :(</button>
+                </form>
             </main>
             <footer>
             </footer>

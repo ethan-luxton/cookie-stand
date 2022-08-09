@@ -1,4 +1,16 @@
 'use strict'
+// let clicked = document.getElementById('sale');
+// clicked.addEventListener("click", getPass);
+// function getPass () {
+//     let pass = prompt('Please enter the password: ')
+//     if (pass.toLowerCase() === 'password') {
+//         window.open('sales.html')
+//     } else if (pass != 'password') {
+//         alert('That is not correct');
+//         return;
+//     } 
+// }
+// Will revisit function to add password later on.
 function fadeScroll(){
     let reveal = document.querySelectorAll('.reveal');
     for (let i = 0; i < reveal.length; i++){
@@ -17,3 +29,4 @@ function fadeScroll(){
 }
 // Window will trigger JS function fadeScroll when the user scrolls past the objects
 window.addEventListener("scroll", fadeScroll);
+document.getele

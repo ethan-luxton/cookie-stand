@@ -59,14 +59,13 @@ h1 {
     text-decoration: underline;
 }
 form {
-    background-color: rgba(250, 128, 114, 0.486);
+    background-color: salmon;
     border-radius: 10px;
     width: 50vw;
     height:30vh;
     margin-top: 5vh;
     margin-right: auto;
     margin-left: auto;
-
 }
 .form-group {
     padding-top: 1%;
@@ -92,7 +91,7 @@ label {
     width: 2in;
     height: 30px;
     color: #D9D9D9;
-    background-color: salmon;
+    background-color: rgb(190, 96, 86);
     border: none;
     font-family: 'Times New Roman', Times, serif, monospace;
     font-size: medium;
@@ -108,19 +107,18 @@ label {
 #salmonpic {
     width: 40vw;
     position: absolute;
-    right: -40vw;
+    left: -40vw;
     -webkit-animation: slide 1s forwards;
     -webkit-animation-delay: 2s;
-    animation: slide 1s forwards;
+    animation: slide 1s forwards ;
     animation-delay: 2s;
-    rotate: 180deg;
-    transform: scaleY(-1);
+    
 }
 
 @-webkit-keyframes slide {
-    100% { right: 0; }
+    100% { left: 0; }
 }
 
 @keyframes slide {
-    100% { right: 0; }
+    100% { left: 0; }
 }

@@ -42,3 +42,70 @@ html {
 .menu-content a:hover {
     text-decoration: underline;
 }
+#cutter-img, #shirt-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+    box-shadow: 3px 4px rgba(255, 255, 255, 0.349);
+}
+input{
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 10px;
+    box-shadow: 3px 3px rgba(0, 0, 0, 0.349);
+    border-color: rgba(250, 128, 114, 0.486);
+}
+.btn {
+    display: block;
+    width: 2in;
+    height: 30px;
+    color: #D9D9D9;
+    background-color: rgb(190, 96, 86);
+    border: none;
+    font-family: 'Times New Roman', Times, serif, monospace;
+    font-size: medium;
+    border-radius: 25px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+    
+.btn:hover{
+    background-color: darkred;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.price {
+    display: block;
+    color: salmon;
+    animation-name: spinX, depth;
+    animation-direction: alternate-reverse ;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-duration: 5s;
+    font-weight: bold;
+    font-size: 24px;
+    text-align: center;
+}
+p {
+    color: salmon;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    
+}
+@keyframes spinX {
+    from { transform: rotateY(45deg); }
+    to { transform: rotateX(45deg); }
+}
+@keyframes depth {
+    0% { text-shadow: 0 0 salmon; }
+    25% { text-shadow: 1px 0 black, 2px 0 black, 3px 0 black, 4px 0 black, 5px 0 black; }
+    50% { text-shadow: 0 0 black; }
+    75% { text-shadow: -1px 0 black, -2px 0 black, -3px 0 black, -4px 0 black, -5px 0 black; }
+    100% { text-shadow: 0 0 black; }
+}
