@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Silkscreen&display=swap');
 * {
     box-sizing: border-box;
 }
@@ -47,7 +49,7 @@ html {
     padding: 12px 16px;
     text-decoration: none;
     display: block;
-    font-family: Andale Mono, monospace;
+    font-family: 'Figtree', sans-serif;
 }
 .menu-content a:hover {
     text-decoration: underline;
@@ -61,6 +63,7 @@ html {
     -webkit-animation-delay: 2s;
     animation: slide 1s forwards;
     animation-delay: 2s;
+    font-family: 'Figtree', sans-serif;
 }
 
 body {
@@ -73,6 +76,7 @@ body {
     animation-iteration-count: infinite;
     animation-duration: 10s;
     color: salmon;
+    font-family: 'Silkscreen', cursive;
 }
 #cookie {
     display: block;
@@ -99,12 +103,15 @@ body {
     margin-right: auto;
     width: 30%;
     margin-top: 4rem;
-    
+    font-family: 'Figtree', sans-serif;
 }
 section ul {
     list-style: none;
     color: #D9D9D9;
     margin-left: 33vw;
+}
+section ul li {
+    font-family: 'Figtree', sans-serif;
 }
 footer {
     height: 100px;
@@ -118,6 +125,7 @@ footer {
 footer a, footer p {
     text-decoration: none;
     color: #D9D9D9;
+    font-family: 'Figtree', sans-serif;
 }
 footer a:hover {
     text-decoration: underline;
